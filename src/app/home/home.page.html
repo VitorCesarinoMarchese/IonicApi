@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Consultor CEP
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-item>
+      <ion-input [(ngModel)]="cep" label="CEP" label-placement="floating" fill="outline" placeholder="01001-000"></ion-input>
+    </ion-item>
+  <ion-button (click)="consultar()">Consultar</ion-button>
+  <ion-list *ngIf="consulta">
+    <ion-item>
+      Logradouro: {{consulta.logradouro}}
+    </ion-item>
+    <ion-item>
+      Bairro: {{consulta.bairro}}
+    </ion-item>
+    <ion-item>
+      Cidade: {{consulta.localidade}}
+    </ion-item>
+    <ion-item>
+      Estado: {{consulta.uf}}
+    </ion-item>
+  </ion-list>
+</ion-content>

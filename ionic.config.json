@@ -1,0 +1,7 @@
+{
+  "name": "Bacana",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
