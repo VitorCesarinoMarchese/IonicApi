@@ -1,28 +1,88 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Consultor CEP
-    </ion-title>
+    <ion-title> Consultor CEP </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-item>
-      <ion-input [(ngModel)]="cep" label="CEP" label-placement="floating" fill="outline" placeholder="01001-000"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-input
+      [(ngModel)]="cep"
+      label="CEP"
+      label-placement="floating"
+      fill="outline"
+      placeholder="01001-000"
+    ></ion-input>
+  </ion-item>
   <ion-button (click)="consultar()">Consultar</ion-button>
   <ion-list *ngIf="consulta">
+    <ion-item> Logradouro: {{consulta.logradouro}} </ion-item>
+    <ion-item> Bairro: {{consulta.bairro}} </ion-item>
+    <ion-item> Cidade: {{consulta.localidade}} </ion-item>
+    <ion-item> Estado: {{consulta.uf}} </ion-item>
+  </ion-list>
+  <ion-list>
     <ion-item>
-      Logradouro: {{consulta.logradouro}}
+      <ion-select
+        [(ngModel)]="estado"
+        label="Estado"
+        label-placement="floating"
+        fill="outline"
+      >
+        <ion-select-option value="AC">Acre</ion-select-option>
+        <ion-select-option value="AL">Alagoas</ion-select-option>
+        <ion-select-option value="AP">Amapá</ion-select-option>
+        <ion-select-option value="AM">Amazonas</ion-select-option>
+        <ion-select-option value="BA">Bahia</ion-select-option>
+        <ion-select-option value="CE">Ceará</ion-select-option>
+        <ion-select-option value="DF">Distrito Federal</ion-select-option>
+        <ion-select-option value="ES">Espírito Santo</ion-select-option>
+        <ion-select-option value="GO">Goiás</ion-select-option>
+        <ion-select-option value="MA">Maranhão</ion-select-option>
+        <ion-select-option value="MT">Mato Grosso</ion-select-option>
+        <ion-select-option value="MS">Mato Grosso do Sul</ion-select-option>
+        <ion-select-option value="MG">Minas Gerais</ion-select-option>
+        <ion-select-option value="PA">Pará</ion-select-option>
+        <ion-select-option value="PB">Paraíba</ion-select-option>
+        <ion-select-option value="PR">Paraná</ion-select-option>
+        <ion-select-option value="PE">Pernambuco</ion-select-option>
+        <ion-select-option value="PI">Piauí</ion-select-option>
+        <ion-select-option value="RJ">Rio de Janeiro</ion-select-option>
+        <ion-select-option value="RN">Rio Grande do Norte</ion-select-option>
+        <ion-select-option value="RS">Rio Grande do Sul</ion-select-option>
+        <ion-select-option value="RO">Rondônia</ion-select-option>
+        <ion-select-option value="RR">Roraima</ion-select-option>
+        <ion-select-option value="SC">Santa Catarina</ion-select-option>
+        <ion-select-option value="SP">São Paulo</ion-select-option>
+        <ion-select-option value="SE">Sergipe</ion-select-option>
+        <ion-select-option value="TO">Tocantins</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-      Bairro: {{consulta.bairro}}
+      <ion-input
+        [(ngModel)]="cidade"
+        label="Cidade"
+        label-placement="floating"
+        fill="outline"
+        placeholder="São Paulo"
+      ></ion-input>
     </ion-item>
     <ion-item>
-      Cidade: {{consulta.localidade}}
+      <ion-input
+        [(ngModel)]="rua"
+        label="Rua"
+        label-placement="floating"
+        placeholder="Avenida Lins De Vasconcelos"
+      ></ion-input>
     </ion-item>
-    <ion-item>
-      Estado: {{consulta.uf}}
-    </ion-item>
+    <ion-button (click)="consultarCep()"> Consultar </ion-button>
+  </ion-list>
+  <ion-list *ngFor="let item of consulta">
+    <ion-item> Logradouro: {{item.logradouro}} </ion-item>
+    <ion-item> Bairro: {{item.bairro}} </ion-item>
+    <ion-item> CEP: {{item.cep}} </ion-item>
+    <ion-item-divider>
+      <ion-label></ion-label>
+    </ion-item-divider>
   </ion-list>
 </ion-content>

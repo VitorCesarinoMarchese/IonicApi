@@ -9,6 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class HomePage {
   consulta: any;
   cep: string = '';
+  cidade: string = '';
+  rua: string = '';
+  estado: string = '';
   readonly apiurl: string = 'https://viacep.com.br/ws';
 
   constructor(private http: HttpClient) {}
@@ -20,8 +23,19 @@ export class HomePage {
 
   }
   async consultar() {
-    this.http.get(`${this.apiurl}/${this.strip()}/json`).subscribe((res) => {
+    await this.http.get(`${this.apiurl}/${this.strip()}/json`).subscribe((res) => {
        this.consulta = res
     });
   }
-}
+  CidadeString(){
+    return this.cidade.replace(/\s/g, '%20')
+  }
+  RuaString(){
+    return this.rua.replace(/\s/g, '+')
+  }
+  async consultarCep(){
+    await this.http.get(`${this.apiurl}/${this.estado}/${this.CidadeString()}/${this.RuaString()}/json/`).subscribe((res) => {
+      this.consulta = res
+    })
+  }
+} 
